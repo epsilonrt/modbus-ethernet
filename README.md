@@ -1,4 +1,5 @@
-# Modbus Library for Arduino - Over TCP/IP implementation for Arduino Ethernet shield
+# Modbus Library for Arduino
+Over TCP/IP implementation for Arduino Ethernet shield
 
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/epsilonrt/modbus-ethernet?include_prereleases)](https://github.com/epsilonrt/modbus-ethernet/releases) 
 [![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
