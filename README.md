@@ -1,5 +1,14 @@
-Modbus Library for Arduino - Over TCP/IP implementation for Arduino Ethernet shield
-===================================================================================
+# Modbus Library for Arduino - Over TCP/IP implementation for Arduino Ethernet shield
+
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/epsilonrt/modbus-ethernet?include_prereleases)](https://github.com/epsilonrt/modbus-ethernet/releases) 
+[![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
+[![Build](https://github.com/epsilonrt/modbus-ethernet/actions/workflows/build.yml/badge.svg)](https://github.com/epsilonrt/modbus-ethernet/actions/workflows/build.yml) 
+
+[![PlatformIO Registry](https://badges.registry.platformio.org/packages/epsilonrt/library/modbus-ethernet.svg)](https://registry.platformio.org/libraries/epsilonrt/modbus-ethernet) 
+[![Platform ATMELAVR](https://img.shields.io/badge/Platform-AtmelAVR-blue)](#)
+[![Platform ATMELSAMD](https://img.shields.io/badge/Platform-AtmelSAMD-blue)](#)
+
+---
 
 This library allows your Arduino to communicate via Modbus protocol. The Modbus is a master-slave protocol
 used in industrial automation and can be used in other areas, such as home automation.
