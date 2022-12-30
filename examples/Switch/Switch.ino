@@ -1,28 +1,26 @@
-/*
-  Modbus-Arduino Example - Switch (Modbus IP)
+/**
+  @file Switch.ino
+  Modbus-Arduino Example - Switch (Modbus TCP using Ethernet shield)
   Copyright by André Sarmento Barbosa
-  http://github.com/andresarmento/modbus-arduino
+  https://github.com/epsilonrt/modbus-ethernet
 */
  
-#include <SPI.h>
-#include <Ethernet.h>
-#include <Modbus.h>
-#include <ModbusIP.h>
+#include <ModbusEthernet.h>
 
 //Modbus Registers Offsets (0-9999)
 const int SWITCH_ISTS = 100; 
 //Used Pins
 const int switchPin = 3;
 
-//ModbusIP object
-ModbusIP mb;
+//ModbusEthernet object
+ModbusEthernet mb;
 
 void setup() {
     // The media access control (ethernet hardware) address for the shield
     byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  
     // The IP address for the shield
     byte ip[] = { 192, 168, 1, 120 };   
-    //Config Modbus IP 
+    // Config Modbus TCP 
     mb.config(mac, ip);
     //Set ledPin mode
     pinMode(switchPin, INPUT);

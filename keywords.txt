@@ -1,7 +1,7 @@
 # Syntax Coloring Map For ModbusIP
 
 # Datatypes (KEYWORD1)
-ModbusIP    	KEYWORD1
+ModbusEthernet  KEYWORD1
 
 # Methods and Functions (KEYWORD2)
 config          KEYWORD2

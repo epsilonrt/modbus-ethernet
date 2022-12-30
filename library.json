@@ -1,0 +1,35 @@
+{
+  "name": "Modbus-Ethernet",
+  "version": "1.0.0",
+  "keywords": "modbus, server, slave, tcp, ethernet, Wiznet, W5100",
+  "description": "A library that allows your Arduino to communicate via Modbus protocol, acting as a slave. Over TCP/IP implementation for Arduino Ethernet shield.",
+  "homepage": "https://github.com/epsilonrt/modbus-ethernet",
+  "authors":
+  [
+    {
+      "name": "Pascal JEAN aka epsilonrt",
+      "url": "https://github.com/epsilonrt",
+      "maintainer": true
+    },
+    {
+      "name": "André Sarmento Barbosa",
+      "url": "https://github.com/andresarmento"
+    }
+  ],
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/epsilonrt/modbus-ethernet.git"
+  },
+  "license": "BSD-3-Clause",
+  "examples":[
+    "examples/*/*.ino"
+  ],
+  "dependencies": {
+    "modbus-arduino": "https://github.com/epsilonrt/modbus-arduino.git#1.1.1",
+    "SPI": "^1.0",
+    "arduino-libraries/Ethernet": "^2.0.1"
+  },
+  "frameworks": "arduino",
+  "platforms": "*"
+}
