@@ -1,13 +1,14 @@
-# Modbus Library for Arduino
+# Modbus Ethernet Library for Arduino
 Over TCP/IP implementation for Arduino Ethernet shield
 
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/epsilonrt/modbus-ethernet?include_prereleases)](https://github.com/epsilonrt/modbus-ethernet/releases) 
-[![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
-[![Build](https://github.com/epsilonrt/modbus-ethernet/actions/workflows/build.yml/badge.svg)](https://github.com/epsilonrt/modbus-ethernet/actions/workflows/build.yml) 
-
 [![PlatformIO Registry](https://badges.registry.platformio.org/packages/epsilonrt/library/modbus-ethernet.svg)](https://registry.platformio.org/libraries/epsilonrt/modbus-ethernet) 
+[![Arduino Registry](https://www.ardu-badge.com/badge/Modbus-Ethernet.svg)](https://www.arduinolibraries.info/libraries/modbus-ethernet)
+
+[![Framework](https://img.shields.io/badge/Framework-Arduino-blue)](https://www.arduino.cc/)
 [![Platform ATMELAVR](https://img.shields.io/badge/Platform-AtmelAVR-blue)](#)
 [![Platform ATMELSAMD](https://img.shields.io/badge/Platform-AtmelSAMD-blue)](#)
+[![Build](https://github.com/epsilonrt/modbus-ethernet/actions/workflows/build.yml/badge.svg)](https://github.com/epsilonrt/modbus-ethernet/actions/workflows/build.yml) 
 
 ---
 
@@ -23,18 +24,18 @@ In the current version the library allows the Arduino operate **as a slave**, su
 
 There are four classes corresponding to five headers that may be used:
 
-* [Modbus](http://github.com/epsilonrt/modbus-arduino ) - Base Library
-* [ModbusSerial](https://github.com/epsilonrt/modbus-serial) - Modbus Serial RTU Library    
-* [ModbusEthernet](https://github.com/epsilonrt/modbus-ethernet) - Modbus TCP Library (standard Ethernet Shield)   
-* [ModbusEthercard](https://github.com/epsilonrt/modbus-ethercard) - Modbus TCP Library (for ENC28J60 chip)  
-* [ModbusEsp8266AT](https://github.com/epsilonrt/modbus-esp8266at) - Modbus IP Library (for ESP8266 chip with AT firmware)   
+* [Modbus-Arduino](http://github.com/epsilonrt/modbus-arduino ) - Base Library
+* [Modbus-Serial](https://github.com/epsilonrt/modbus-serial) - Modbus Serial RTU Library    
+* [Modbus-Ethernet](https://github.com/epsilonrt/modbus-ethernet) - Modbus TCP Library (standard Ethernet Shield)   
+* [Modbus-EtherCard](https://github.com/epsilonrt/modbus-ethercard) - Modbus TCP Library (for ENC28J60 chip)  
+* [Modbus-Esp8266AT](https://github.com/epsilonrt/modbus-esp8266at) - Modbus IP Library (for ESP8266 chip with AT firmware)   
 
 By opting for Modbus Serial or Modbus TCP you must include in your sketch the corresponding header and the base library header, eg:
 
     #include <Modbus.h>
     #include <ModbusSerial.h>
 
-## ModbusEthernet
+## Modbus-Ethernet
 
 There are four examples that can be accessed from the Arduino interface, once you have installed the library.
 Let's look at the example Switch.ino (only the parts concerning Modbus will be commented):
@@ -70,22 +71,48 @@ The syntax is equal to Arduino Ethernet class, and supports the following format
 
 Then we have:
 
-    mb.addIsts (SWITCH_ISTS);
+    mb.addCoil (Lamp1Coil);
 
-Adds the register type Input Status (digital input) that is responsible for detecting if a switch is in state on or off.
+Adds the register type Coil (digital output) that will be responsible for 
+activating the LED or lamp and verify their status. 
 The library allows you to set an initial value for the register:
 
-    mb.addIsts (SWITCH_ISTS, true);
+    mb.addCoil (Lamp1Coil, true);
 
-In this case the register is added and set to true. If you use the first form the default value is false.
+In this case the register is added and set to true. If you use the first form 
+the default value is false.
 
     mb.task ();
 
-This method makes all magic, answering requests and changing the registers if necessary, it should be called only once, early in the loop.
+This method makes all magic, answering requests and changing the registers if 
+necessary, it should be called only once, early in the loop.
 
-    mb.Ists (SWITCH_ISTS, digitalRead (switchPin));
+    digitalWrite (LedPin, mb.coil (Lamp1Coil));
 
-Finally the value of SWITCH_ISTS register changes as the state of the selected digital input.
+Finally the value of Lamp1Coil register is used to drive the lamp or LED.
+
+In much the same way, the other examples show the use of other methods available in the library:
+
+    void addCoil (offset word, bool value)
+    void addHreg (offset word, word value)
+    void addIsts (offset word, bool value)
+    void addIreg (offset word, word value)
+
+Adds registers and configures initial value if specified.
+
+    bool setCoil (offset word, bool value)
+    bool setHreg (offset word, word value)
+    bool setIsts (offset word, bool value)
+    bool setIReg (offset word, word value)
+
+Sets a value to the register.
+
+    bool coil (offset word)
+    word hreg  (word offset)
+    bool ists (offset word)
+    word ireg (word offset)
+
+Returns the value of a register.
 
 **Notes:**
 
@@ -95,12 +122,6 @@ keep-alive type connection. If you need a TCP keep-alive connection you have to
 remove comments of this line in ModbusEthernet.h header (or ModbusEthercard.h ModbusEsp8266AT.h headers):
 
 		#define TCP_KEEP_ALIVE
-
-Contributions
-=============
-http://github.com/epsilonrt/modbus-arduino  
-epsilonrt (at) gmail (dot) com  
-prof (at) andresarmento (dot) com  
 
 License
 =======
